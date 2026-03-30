@@ -1,3 +1,5 @@
+import sys
+import os
 import streamlit as st
 import plotly.express as px
 from plotly.subplots import make_subplots
@@ -14,8 +16,7 @@ from frontend.code.helper import prepare_symptoms_array
 import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
-import sys
-import os
+
 
 # loading the models
 diabetes_model = joblib.load("frontend/models/diabetes_model.sav")
