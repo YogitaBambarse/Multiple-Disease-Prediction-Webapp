@@ -65,7 +65,9 @@ class DiseaseModel:
 
       BASE_DIR = os.path.dirname(os.path.abspath(__file__))
       file_path = os.path.join(BASE_DIR, '..', 'data', 'clean_dataset.tsv')
-        df = pd.read_csv(file_path, sep='\t')
+          df = pd.read_csv(file_path, sep='\t')
+       
+        
         # Preprocessing
         y_data = df.iloc[:,-1]
         X_data = df.iloc[:,:-1]
