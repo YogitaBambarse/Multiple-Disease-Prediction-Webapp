@@ -16,7 +16,7 @@ from frontend.code.helper import prepare_symptoms_array
 import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
-
+sys.path.append(os.path.join(os.path.dirname(__file__), "frontend"))
 
 # loading the models
 diabetes_model = joblib.load("frontend/models/diabetes_model.sav")
