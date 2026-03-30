@@ -341,7 +341,7 @@ if selected == 'Parkison Prediction':
 
 
 # Load the dataset
-lung_cancer_data = pd.read_csv('data/lung_cancer.csv')
+lung_cancer_data = pd.read_csv('frontend/data/lung_cancer.csv')
 
 # Convert 'M' to 0 and 'F' to 1 in the 'GENDER' column
 lung_cancer_data['GENDER'] = lung_cancer_data['GENDER'].map({'M': 'Male', 'F': 'Female'})
