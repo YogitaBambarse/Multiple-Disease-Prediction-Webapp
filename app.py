@@ -56,7 +56,7 @@ with st.sidebar:
 if selected == 'Disease Prediction': 
     # Create disease class and load ML model
     disease_model = DiseaseModel()
-    disease_model.load_xgboost('model/xgboost_model.json')
+    disease_model.load_xgboost('frontend/model/xgboost_model.json')
 
     # Title
     st.write('# Disease Prediction using Machine Learning')
