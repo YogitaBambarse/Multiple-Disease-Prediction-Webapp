@@ -6,12 +6,12 @@ from PIL import Image
 from streamlit_option_menu import option_menu
 
 # -------------------- LOAD MODELS --------------------
-diabetes_model = joblib.load("models/diabetes_model.sav")
-heart_model = joblib.load("models/heart_disease_model.sav")
-parkinson_model = joblib.load("models/parkinsons_model.sav")
-liver_model = joblib.load("models/liver_model.sav")
-lung_cancer_model = joblib.load("models/lung_cancer_model.sav")
-hepatitis_model = joblib.load("models/hepatitis_model.sav")
+diabetes_model = joblib.load("frontend/models/diabetes_model.sav")
+heart_model = joblib.load("frontend/models/heart_disease_model.sav")
+parkinson_model = joblib.load("frontend/models/parkinsons_model.sav")
+liver_model = joblib.load("frontend/models/liver_model.sav")
+lung_cancer_model = joblib.load("frontend/models/lung_cancer_model.sav")
+hepatitis_model = joblib.load("frontend/models/hepatitis_model.sav")
 
 # -------------------- SIDEBAR --------------------
 with st.sidebar:
