@@ -1,6 +1,6 @@
 import xgboost as xgb
 import pandas as pd
-
+import os
 class DiseaseModel:
 
     def __init__(self):
@@ -8,8 +8,8 @@ class DiseaseModel:
         self.symptoms = None
         self.pred_disease = None
         self.model = xgb.XGBClassifier()
-        self.diseases = self.disease_list('data/dataset.csv')
-
+        self.diseases = self.disease_list()
+        
     def load_xgboost(self, model_path):
         self.model.load_model(model_path)
 
@@ -31,7 +31,7 @@ class DiseaseModel:
             return "That disease is not contemplated in this model"
         
         # Read disease dataframe
-        desc_df = pd.read_csv('data/symptom_Description.csv')
+        desc_df = pd.read_csv(os.path.join(BASE_DIR, '..', 'data', 'symptom_Description.csv'))
         desc_df = desc_df.apply(lambda col: col.str.strip())
 
         return desc_df[desc_df['Disease'] == disease_name]['Description'].values[0]
@@ -49,7 +49,7 @@ class DiseaseModel:
             return "That disease is not contemplated in this model"
 
         # Read precautions dataframe
-        prec_df = pd.read_csv('data/symptom_precaution.csv')
+        prec_df = pd.read_csv(os.path.join(BASE_DIR, '..', 'data', 'symptom_precaution.csv'))
         prec_df = prec_df.apply(lambda col: col.str.strip())
 
         return prec_df[prec_df['Disease'] == disease_name].filter(regex='Precaution').values.tolist()[0]
@@ -63,7 +63,10 @@ class DiseaseModel:
 
     def disease_list(self, kaggle_dataset):
 
-        df = pd.read_csv('data/clean_dataset.tsv', sep='\t')
+      BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+      file_path = os.path.join(BASE_DIR, '..', 'data', 'clean_dataset.tsv')
+
+        df = pd.read_csv(file_path, sep='\t')
         # Preprocessing
         y_data = df.iloc[:,-1]
         X_data = df.iloc[:,:-1]
