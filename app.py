@@ -14,6 +14,8 @@ from code.helper import prepare_symptoms_array
 import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
+import sys
+import os
 
 # loading the models
 diabetes_model = joblib.load("frontend/models/diabetes_model.sav")
