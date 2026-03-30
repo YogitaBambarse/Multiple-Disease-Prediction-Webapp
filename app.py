@@ -9,8 +9,8 @@ import pickle
 from PIL import Image
 import numpy as np
 import plotly.figure_factory as ff
-from code.DiseaseModel import DiseaseModel
-from code.helper import prepare_symptoms_array
+from frontend.code.DiseaseModel import DiseaseModel
+from frontend.code.helper import prepare_symptoms_array
 import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
