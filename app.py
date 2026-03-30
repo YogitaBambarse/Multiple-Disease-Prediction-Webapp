@@ -11,7 +11,7 @@ heart_model = joblib.load("frontend/models/heart_disease_model.sav")
 parkinson_model = joblib.load("frontend/models/parkinsons_model.sav")
 liver_model = joblib.load("frontend/models/liver_model.sav")
 lung_cancer_model = joblib.load("frontend/models/lung_cancer_model.sav")
-hepititisc_model = joblib.load("frontend/models/hepititisc_model.sav")
+hepatitis_model = joblib.load("frontend/models/hepatitis_model.sav")
 
 # -------------------- SIDEBAR --------------------
 with st.sidebar:
@@ -135,7 +135,7 @@ elif selected == 'Lung Cancer Prediction':
             st.success("No Risk")
 
 # -------------------- HEPATITIS --------------------
-elif selected == 'Hepititisc Prediction':
+elif selected == 'Hepatitis Prediction':
     st.title("Hepititisc Prediction")
 
     age = st.number_input("Age")
@@ -149,9 +149,9 @@ elif selected == 'Hepititisc Prediction':
         data = pd.DataFrame([[age, sex, alb, alp, alt, ast]],
                             columns=['Age','Sex','ALB','ALP','ALT','AST'])
 
-        result = hepititisc_model.predict(data)
+        result = hepatitis_model.predict(data)
 
         if result[0] == 1:
-            st.error("Hepititisc Detected")
+            st.error("Hepatitis Detected")
         else:
-            st.success("No Hepititisc")
+            st.success("No Hepatitis")
