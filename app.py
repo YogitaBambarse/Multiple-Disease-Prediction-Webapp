@@ -23,7 +23,7 @@ with st.sidebar:
             'Parkinson Prediction',
             'Liver Prediction',
             'Lung Cancer Prediction',
-            'Hepatitis Prediction'
+            'Hepititisc Prediction'
         ],
         icons=['activity', 'heart', 'person', 'person', 'person', 'person'],
         default_index=0
@@ -135,8 +135,8 @@ elif selected == 'Lung Cancer Prediction':
             st.success("No Risk")
 
 # -------------------- HEPATITIS --------------------
-elif selected == 'Hepatitis Prediction':
-    st.title("Hepatitis Prediction")
+elif selected == 'Hepititisc Prediction':
+    st.title("Hepititisc Prediction")
 
     age = st.number_input("Age")
     sex = st.selectbox("Sex", [1,2])
@@ -149,9 +149,9 @@ elif selected == 'Hepatitis Prediction':
         data = pd.DataFrame([[age, sex, alb, alp, alt, ast]],
                             columns=['Age','Sex','ALB','ALP','ALT','AST'])
 
-        result = hepatitis_model.predict(data)
+        result = hepititisc_model.predict(data)
 
         if result[0] == 1:
-            st.error("Hepatitis Detected")
+            st.error("Hepititisc Detected")
         else:
-            st.success("No Hepatitis")
+            st.success("No Hepititisc")
