@@ -1,6 +1,5 @@
 import xgboost as xgb
 import pandas as pd
-import os
 
 class DiseaseModel:
 
@@ -9,12 +8,7 @@ class DiseaseModel:
         self.symptoms = None
         self.pred_disease = None
         self.model = xgb.XGBClassifier()
-
-        # ✅ BASE PATH FIX
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        self.data_path = os.path.join(BASE_DIR, '..', 'data')
-
-        self.diseases = self.disease_list()
+        self.diseases = self.disease_list('data/dataset.csv')
 
     def load_xgboost(self, model_path):
         self.model.load_model(model_path)
@@ -30,14 +24,14 @@ class DiseaseModel:
         disease_probability = disease_probability_array[0, disease_pred_idx[0]]
         return self.pred_disease, disease_probability
 
+    
     def describe_disease(self, disease_name):
 
         if disease_name not in self.diseases:
             return "That disease is not contemplated in this model"
         
-        # ✅ FIXED PATH
-        file_path = os.path.join(self.data_path, 'symptom_Description.csv')
-        desc_df = pd.read_csv(file_path)
+        # Read disease dataframe
+        desc_df = pd.read_csv('data/symptom_Description.csv')
         desc_df = desc_df.apply(lambda col: col.str.strip())
 
         return desc_df[desc_df['Disease'] == disease_name]['Description'].values[0]
@@ -54,9 +48,8 @@ class DiseaseModel:
         if disease_name not in self.diseases:
             return "That disease is not contemplated in this model"
 
-        # ✅ FIXED PATH
-        file_path = os.path.join(self.data_path, 'symptom_precaution.csv')
-        prec_df = pd.read_csv(file_path)
+        # Read precautions dataframe
+        prec_df = pd.read_csv('data/symptom_precaution.csv')
         prec_df = prec_df.apply(lambda col: col.str.strip())
 
         return prec_df[prec_df['Disease'] == disease_name].filter(regex='Precaution').values.tolist()[0]
@@ -68,17 +61,16 @@ class DiseaseModel:
 
         return self.disease_precautions(self.pred_disease)
 
-    def disease_list(self):
+    def disease_list(self, kaggle_dataset):
 
-        # ✅ FIXED PATH
-        file_path = os.path.join(self.data_path, 'clean_dataset.tsv')
-        df = pd.read_csv(file_path, sep='\t')
-
+        df = pd.read_csv('data/clean_dataset.tsv', sep='\t')
+        # Preprocessing
         y_data = df.iloc[:,-1]
         X_data = df.iloc[:,:-1]
 
         self.all_symptoms = X_data.columns
 
+        # Convert y to categorical values
         y_data = y_data.astype('category')
         
         return y_data.cat.categories
