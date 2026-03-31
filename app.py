@@ -565,4 +565,4 @@ if st.button("Predict Hepatitis"):
         'ALT': [alkaline_phosphatase],  # Correct the feature name  
         'AST': [alamine_aminotransferase],  
         'BIL': [aspartate_aminotransferase],  # Correct the feature name  
-        'CHE': [total_proteins],  #
+        'CHE': [total_proteins],  
